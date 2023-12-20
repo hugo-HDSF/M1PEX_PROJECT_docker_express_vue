@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  client:
+    env_file:
+      - ./client/.env.dev
+    build:
+      context: ./client
+    working_dir: /app
+    volumes:
+      - ./client:/app:cached
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+
+  server:
+    env_file:
+      - ./server/.env.dev
+    build:
+      context: ./server
+    working_dir: /app
+    volumes:
+      - ./server:/app:cached
+      - /app/node_modules
+    ports:
+      - "4000:4000"
